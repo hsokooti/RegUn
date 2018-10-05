@@ -32,4 +32,4 @@ An example of registration paramater for elastix and ANTs package is available a
 All of the addressess (images, results, etc) can be modified in  `Functions/Python/setting_utils.py`. 
 
 ### 2.3 Pooling
-
+In order to calculate max-pooling, average-pooling and normalized mutual information, the binary versions are available at: `Functions/Python/EXE/`. 

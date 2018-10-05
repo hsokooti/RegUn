@@ -1,0 +1,10 @@
+--verbose 1 
+--dimensionality $dim 
+--output [${op}] 
+--use-histogram-matching 1 
+--initial-moving-transform ${InitialTransform} 
+--transform BSplineSyN[0.1, 40, 0, 3] 
+--smoothing-sigmas 0 
+--shrink-factors 1 
+--metric CC[${FixedImage}, ${MovingImage}, 1, 4, Random, 0.1] 
+--convergence [500, 1e-6]

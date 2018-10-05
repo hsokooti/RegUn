@@ -16,4 +16,20 @@ Predicting registration error can be useful for evaluation of registration proce
 
 
 ## 2. Running RegUn
-Run `uncertainty.py`. All of the addressess (images, results, etc) can be modified in  `Functions/Python/setting_utils.py`
+Check `uncertainty.py`
+
+### 2.1 Perform Registration:
+In order to run registration, runnig  `do_elastix_registration.py` or  `do_ANTs_registration.py` is easier. Later the script  `uncertainty.py` can read the registration results. 
+
+An example of registration paramater for elastix and ANTs package is available at: 
+
+`Elastix/DIR-Lab_COPD/elastix1/parameter/` and 
+
+`Elastix/DIR-Lab_COPD/ANTs1/parameter/`.
+
+### 2.2 Reading Images
+
+All of the addressess (images, results, etc) can be modified in  `Functions/Python/setting_utils.py`. 
+
+### 2.3 Pooling
+

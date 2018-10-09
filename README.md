@@ -23,7 +23,7 @@ Predicting registration error can be useful for evaluation of registration proce
 - [numpy](http://www.numpy.org/) : General purpose array-processing package.
 - [SciPy](https://www.scipy.org/) : A Python-based ecosystem of open-source software for mathematics, science, and engineering.
 - [SimpleITK](http://www.simpleitk.org/) : Simplified interface to the Insight Toolkit for image registration and segmentation.
-- [TBB](https://www.threadingbuildingblocks.org): Lets you easily write parallel C++ programs that take full advantage of multicore performance
+- [TBB](https://www.threadingbuildingblocks.org): Lets you easily write parallel C++ programs that take full advantage of multicore performance.
 
 
 ## 2. Running RegUn
@@ -32,7 +32,7 @@ Check `uncertainty.py`
 ### 2.1 Perform Registration:
 In order to run registration, runnig  `do_elastix_registration.py` or  `do_ANTs_registration.py` is easier. Later the script  `uncertainty.py` can read the registration results. 
 
-An example of registration paramater for elastix and ANTs package is available at: 
+An example of registration paramater for [elastix](http://elastix.isi.uu.nl/) and [ANTs](http://stnava.github.io/ANTs/) package is available at: 
 
 `Elastix/DIR-Lab_COPD/elastix1/parameter/` and 
 
@@ -41,15 +41,15 @@ An example of registration paramater for elastix and ANTs package is available a
 #### 2.1.1 Perform Registration using a cluster:
 The software is capble to use a [Open Grid Scheduler](http://gridscheduler.sourceforge.net/) cluster. This can be done by modifying the parameter `where_to_run`:
 ```python
-where_to_run='sharkCluster'
+where_to_run = 'sharkCluster'
 ```
 | variable 	                    | Task	                                        | Number of Registration |
 |:-------------------------------:	|:------------------------------------------:     |:-----:|
 | ` setting['cluster_phase'] = 0` 	| affine registration	                    |1 |
 | ` setting['cluster_phase'] = 1` 	| initial perturbation to calculate stdT  	|21|
-| ` setting['cluster_phase'] = 2` 	| final perturbation to calculate stdTL 	|20|
+| ` setting['cluster_phase'] = 2` 	| final perturbation to calculate stdT<sup>L</sup>  |20|
  
-
+By assigning ` setting['cluster_task_dependency'] = True`, the software automatically waits for earlier phases to be completed.
 
 ### 2.2 Reading Images
 

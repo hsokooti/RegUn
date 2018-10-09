@@ -16,10 +16,6 @@ def main(current_experiment=None):
     if not su.load_setting(current_experiment, data=database, where_to_run=where_to_run):
         registration_method = 'ANTs'   # elastix , ANTs
         setting = su.initialize_setting(current_experiment, data=database, where_to_run=where_to_run, registration_method=registration_method)
-        setting['cluster_phase'] = 1  # 0: affine, 1: initial perturb + BSpline_SyN, 2:final perturb + BSpline_Syn
-        setting['affine_experiment'] = None
-        setting['AffineParameter'] = ['Par0011.affine.txt', 'Par0011.affine.txt', 'Par0011.affine.txt']
-        setting['MaskName_Affine'] = ['Cylinder', 'Torso', 'Lung_Manual']
     else:
         setting = su.load_setting(current_experiment, data=database, where_to_run=where_to_run)
 

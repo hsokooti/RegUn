@@ -1,6 +1,7 @@
 
 
-RegUn: Registration Uncertainty
+RegUn: Registration Uncertainty: Quantitative Error Prediction of Medical Image Registration using
+Regression Forests
 
 ## Introduction
 Predicting registration error can be useful for evaluation of registration procedures, which is important for the adoption of registration techniques in the clinic. In addition, quantitative error prediction can be helpful in improving the registration quality. This work proposes a new automatic method to predict the registration error in a quantitative manner, and is applied to chest CT scans. A random regression forest is utilized to predict the registration error locally. The forest is built with features related to the transformation model and features related to the dissimilarity after registration.
@@ -16,7 +17,7 @@ Predicting registration error can be useful for evaluation of registration proce
 
 
 ### Citation
-[1] Sokooti, H., Saygili, G., Glocker, B., Lelieveldt, B. P., & Staring, M. (2016, October). Accuracy estimation for medical image registration using regression forests. In International Conference on Medical Image Computing and Computer-Assisted Intervention (pp. 107-115). Springer, Cham.
+[1] Sokooti, H., Saygili, G., Glocker, B., Lelieveldt, B. P., & Staring, M. (2016, October). [Accuracy estimation for medical image registration using regression forests](https://link.springer.com/chapter/10.1007/978-3-319-46726-9_13). In International Conference on Medical Image Computing and Computer-Assisted Intervention (pp. 107-115). Springer, Cham.
 
 ## 1. Dependencies
 - [numpy](http://www.numpy.org/) : General purpose array-processing package.
@@ -36,6 +37,13 @@ An example of registration paramater for elastix and ANTs package is available a
 `Elastix/DIR-Lab_COPD/elastix1/parameter/` and 
 
 `Elastix/DIR-Lab_COPD/ANTs1/parameter/`.
+
+#### 2.1.1 Perform Registration using a cluster:
+The software is capble to use a [Open Grid Scheduler](http://gridscheduler.sourceforge.net/) cluster. This can be done by modifying the parameter `where_to_run`:
+```python
+where_to_run='sharkCluster'
+```
+
 
 ### 2.2 Reading Images
 

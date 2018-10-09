@@ -43,6 +43,12 @@ The software is capble to use a [Open Grid Scheduler](http://gridscheduler.sourc
 ```python
 where_to_run='sharkCluster'
 ```
+| variable 	                    | Task	                                        | Number of Registration |
+|:-------------------------------:	|:------------------------------------------:     |:-----:|
+| ` setting['cluster_phase'] = 0` 	| affine registration	                    |1 |
+| ` setting['cluster_phase'] = 1` 	| initial perturbation to calculate stdT  	|21|
+| ` setting['cluster_phase'] = 2` 	| final perturbation to calculate stdTL 	|20|
+ 
 
 
 ### 2.2 Reading Images

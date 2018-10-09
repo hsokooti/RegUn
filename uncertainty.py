@@ -7,13 +7,12 @@ import Functions.Python.preprocessing as pre
 import Functions.Python.landmark_utils as lu
 import Functions.Python.ANTs.registration_ants as reg_ants
 import Functions.Python.ANTs.loss_function as ants_loss
-import time
 
 
 def main(current_experiment=None):
     where_to_run = 'local'  # 'local' , 'sharkCluster' , 'shark'
     database = 'DIR-Lab_COPD'
-    current_experiment = 'ANTs18'  # 'elastix1', 'EMPIRE10_crop11'
+    current_experiment = 'elastix1'  # 'elastix1', 'ANTs1'
     if not su.load_setting(current_experiment, data=database, where_to_run=where_to_run):
         registration_method = 'ANTs'   # elastix , ANTs
         setting = su.initialize_setting(current_experiment, data=database, where_to_run=where_to_run, registration_method=registration_method)
@@ -27,7 +26,6 @@ def main(current_experiment=None):
     cn_list = setting['cn_range']
     feature_list = ['stdT', 'E_T', 'stdT_final', 'E_T_final', 'Jac', 'MIND', 'CV', 'NC', 'MI']
     feature_pool_list = ['stdT', 'E_T', 'stdT_final', 'E_T_final', 'Jac', 'MIND', 'CV']
-    feature_scatter_list = ['stdT_pooled_0', 'stdT_pooled_1', 'stdT_pooled_2', 'stdT_pooled_3', 'MIND_pooled_0', 'MIND_pooled_1', 'MIND_pooled_2'] + ['stdT', 'E_T', 'Jac', 'MIND', 'CV', 'NC', 'MI']
 
     cn_remove = []
     for cn in cn_list:
@@ -67,7 +65,6 @@ def main(current_experiment=None):
     lu.plot.boxplot_tre(setting, cn_list=cn_list, exp_tre_list=exp_tre_list)
     lu.plot.table_tre(setting, cn_list=cn_list, exp_tre_list=exp_tre_list)
     lu.plot.table_tre_cn(setting, cn_list=cn_list, exp='ANTs1-TRE_nonrigid')
-    lu.plot.feature_tre_scatter(setting, cn_list=cn_list, feature_list=feature_scatter_list)
     ants_loss.plot_loss(setting, cn_list=np.arange(1, 11), exp_list=exp_loss, out=0)
 
 

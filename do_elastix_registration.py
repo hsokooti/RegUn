@@ -134,15 +134,15 @@ def backup_script(setting, script_address):
 
 
 def check_input_arguments(setting):
-    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser = argparse.ArgumentParser(description='inpusts of elastix registration')
     parser.add_argument('--phase', metavar='N', type=int, nargs='+',
-                        help='an integer for the accumulator')
+                        help='0: Affine, 1: stdT, 2:stdTL')
     parser.add_argument('--cn', metavar='N', type=int, nargs='+',
-                        help='an integer for the accumulator')
+                        help='case number of the image')
     parser.add_argument('--out', metavar='N', type=int, nargs='+',
-                        help='an integer for the accumulator')
+                        help='selected number of the registration to calculated stdT')
     parser.add_argument('--outfinal', metavar='N', type=int, nargs='+',
-                        help='an integer for the accumulator')
+                        help='selected number of the registration to calculated stdTL')
     args = parser.parse_args()
     if args.phase is not None:
         setting['whereToRun'] = 'sharkCluster'

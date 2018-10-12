@@ -1,6 +1,6 @@
 
 
-def job_script(setting, job_name=None, phase=None, cn=None, out=None, outfinal=None, scipt_address=None, job_output=None):
+def job_script(setting, job_name=None, phase=None, cn=None, out=None, outfinal=None, script_address=None, job_output=None):
     text = """#!/bin/bash
 #$ -S /bin/bash 
 #$ -j Y 
@@ -11,7 +11,7 @@ def job_script(setting, job_name=None, phase=None, cn=None, out=None, outfinal=N
     text = text + '#$ -N ' + job_name + '\n'
     text = text + '#$ -l h_vmem=' + setting['cluster_memory'] + '\n'
 
-    text = text + 'python ' + scipt_address + ' --phase ' + str(phase) + ' --cn ' + str(cn)
+    text = text + 'python ' + script_address + ' --phase ' + str(phase) + ' --cn ' + str(cn)
     if out is not None:
         text = text + ' --out ' + str(out)
     if outfinal is not None:

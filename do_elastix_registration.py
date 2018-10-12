@@ -97,18 +97,18 @@ def do_elastix_registration():
                 for cn in cn_range:
                     if not os.path.isfile(su.address_generator(setting, 'affineTransformParameter', cn=cn)):
                         job_name = setting['current_experiment'] + '_' + 'affine_cn_' + str(cn)
-                        reg_elx.write_and_submit_job(setting, job_name=job_name, phase=phase, cn=cn, scipt_address=backup_script_address)
+                        reg_elx.write_and_submit_job(setting, job_name=job_name, phase=phase, cn=cn, script_address=backup_script_address)
             if phase == 1:
                 for cn in cn_range:
                     for out in range(0, 1):
                         job_name = setting['current_experiment'] + '_' + 'nonRigid_cn_' + str(cn) + '_out_' + str(out)
-                        reg_elx.write_and_submit_job(setting, job_name=job_name, phase=phase, cn=cn, out=out, scipt_address=backup_script_address)
+                        reg_elx.write_and_submit_job(setting, job_name=job_name, phase=phase, cn=cn, out=out, script_address=backup_script_address)
             if phase == 2:
                 for cn in cn_range:
                     for outfinal in range(1, 21):
                         # if not os.path.isfile(su.address_generator(setting, 'DVF_nonRigid_composed_final', IN=cn, outfinal=outfinal)):
                         job_name = setting['current_experiment'] + '_' + 'nonRigid_cn_' + str(cn) + '_outfinal_' + str(outfinal)
-                        reg_elx.write_and_submit_job(setting, job_name=job_name, phase=phase, cn=cn, outfinal=outfinal, scipt_address=backup_script_address)
+                        reg_elx.write_and_submit_job(setting, job_name=job_name, phase=phase, cn=cn, outfinal=outfinal, script_address=backup_script_address)
 
 
 def backup_script(setting, script_address):

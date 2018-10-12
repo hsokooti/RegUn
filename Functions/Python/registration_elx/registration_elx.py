@@ -239,7 +239,7 @@ def perturbation(setting, cn=None, out=None, outfinal=None):
             bspline_perturb_str.write(line + '\n')
 
 
-def write_and_submit_job(setting, job_name=None, phase=None, cn=None, out=None, outfinal=None, scipt_address=None):
+def write_and_submit_job(setting, job_name=None, phase=None, cn=None, out=None, outfinal=None, script_address=None):
     if phase == 0:
         job_script_folder = su.address_generator(setting, 'affineFolder', cn=cn)
         job_output = su.address_generator(setting, 'affineJobOut', cn=cn)
@@ -255,7 +255,7 @@ def write_and_submit_job(setting, job_name=None, phase=None, cn=None, out=None, 
         os.makedirs(job_script_folder)
     job_script = job_script_folder + 'jobscript.sh'
     with open(job_script, "w") as textScr:
-        textScr.write(sungrid.job_script(setting, job_name=job_name, phase=phase, cn=cn, out=out, outfinal=outfinal, scipt_address=scipt_address, job_output=job_output))
+        textScr.write(sungrid.job_script(setting, job_name=job_name, phase=phase, cn=cn, out=out, outfinal=outfinal, script_address=script_address, job_output=job_output))
         textScr.close()
     qsub_cmd = 'qsub '
     if setting['cluster_task_dependency']:

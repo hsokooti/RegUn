@@ -107,18 +107,18 @@ def do_ANTs_registration():
                 for cn in cn_range:
                     if not os.path.isfile(su.address_generator(setting, 'affineDVF', cn=cn)):
                         job_name = setting['current_experiment'] + '_' + 'affine_cn_' + str(cn)
-                        regANTs.write_and_submit_job(setting, job_name=job_name, phase=phase, cn=cn, scipt_address=backup_script_address)
+                        regANTs.write_and_submit_job(setting, job_name=job_name, phase=phase, cn=cn, script_address=backup_script_address)
             if phase == 1:
                 for cn in range(9, 11):
                     for out in range(1, 21):
                         job_name = setting['current_experiment'] + '_' + 'nonRigid_cn_' + str(cn) + '_out_' + str(out)
-                        regANTs.write_and_submit_job(setting, job_name=job_name, phase=phase, cn=cn, out=out, scipt_address=backup_script_address)
+                        regANTs.write_and_submit_job(setting, job_name=job_name, phase=phase, cn=cn, out=out, script_address=backup_script_address)
             if phase == 2:
                 for cn in range(9, 11):
                     for outfinal in range(1, 21):
                         if not os.path.isfile(su.address_generator(setting, 'DVF_nonRigid_composed_final', cn=cn, outfinal=outfinal)):
                             job_name = setting['current_experiment'] + '_' + 'nonRigid_cn_' + str(cn) + '_outfinal_' + str(outfinal)
-                            regANTs.write_and_submit_job(setting, job_name=job_name, phase=phase, cn=cn, outfinal=outfinal, scipt_address=backup_script_address)
+                            regANTs.write_and_submit_job(setting, job_name=job_name, phase=phase, cn=cn, outfinal=outfinal, script_address=backup_script_address)
 
 
 def backup_script(setting, script_address):

@@ -30,16 +30,16 @@ Predicting registration error can be useful for evaluation of registration proce
 Check `uncertainty.py`
 
 ### 2.1 Perform Registration:
-In order to run registration, runnig  `do_elastix_registration.py` or  `do_ANTs_registration.py` is easier. Later the script  `uncertainty.py` can read the registration results. 
+In order to perform registration, runnig  the script `do_elastix_registration.py` or  `do_ANTs_registration.py` is easier. Later the script  `uncertainty.py` can read the registration results. 
 
-An example of registration paramater for [elastix](http://elastix.isi.uu.nl/) and [ANTs](http://stnava.github.io/ANTs/) package is available at: 
+An example of a registration paramater for [elastix](http://elastix.isi.uu.nl/) and [ANTs](http://stnava.github.io/ANTs/) package are available at: 
 
 `Elastix/DIR-Lab_COPD/elastix1/parameter/` and 
 
 `Elastix/DIR-Lab_COPD/ANTs1/parameter/`.
 
 #### 2.1.1 Perform Registration using a cluster:
-The software is capble to use a [Open Grid Scheduler](http://gridscheduler.sourceforge.net/) cluster. This can be done by modifying the parameter `where_to_run`:
+The software is capble to use an [Open Grid Scheduler](http://gridscheduler.sourceforge.net/) cluster. This can be done by modifying the parameter `where_to_run`:
 ```python
 where_to_run = 'sharkCluster'
 ```
@@ -49,7 +49,7 @@ where_to_run = 'sharkCluster'
 | ` setting['cluster_phase'] = 1` 	| initial perturbation to calculate stdT  	|21|
 | ` setting['cluster_phase'] = 2` 	| final perturbation to calculate stdT<sup>L</sup>  |20|
  
-By assigning ` setting['cluster_task_dependency'] = True`, the software automatically waits for earlier phases to be completed.
+By assigning ` setting['cluster_task_dependency'] = True`, the software automatically waits for the earlier phases to be completed.
 
 ### 2.2 Reading Images
 

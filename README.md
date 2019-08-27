@@ -17,7 +17,9 @@ Predicting registration error can be useful for evaluation of registration proce
 
 
 ### Citation
-[1] Sokooti, H., Saygili, G., Glocker, B., Lelieveldt, B. P., & Staring, M. (2016, October). [Accuracy estimation for medical image registration using regression forests](https://link.springer.com/chapter/10.1007/978-3-319-46726-9_13). In International Conference on Medical Image Computing and Computer-Assisted Intervention (pp. 107-115). Springer, Cham.
+[1] Sokooti, H., Saygili, G., Glocker, B., Lelieveldt, B.P. and Staring, M., 2019. [Quantitative Error Prediction of Medical Image Registration using Regression Forests](https://www.sciencedirect.com/science/article/pii/S1361841518300811). Medical image analysis. [arXiv](https://arxiv.org/abs/1905.07624)
+
+[2] Sokooti, H., Saygili, G., Glocker, B., Lelieveldt, B. P., & Staring, M. (2016, October). [Accuracy estimation for medical image registration using regression forests](https://link.springer.com/chapter/10.1007/978-3-319-46726-9_13). In International Conference on Medical Image Computing and Computer-Assisted Intervention (pp. 107-115). Springer, Cham.
 
 ## 1. Dependencies
 - [numpy](http://www.numpy.org/) : General purpose array-processing package.

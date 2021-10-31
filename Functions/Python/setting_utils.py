@@ -156,6 +156,8 @@ def address_generator(s, requested_address, cn=None, out=None, outfinal=None, ty
             name_dic['Lung_Filled'] = 'Lung_Filled/copd' + str(cn) + '_' + s['types'][type_im] + 'BHCT'
             name_dic['Lung_Filled_Erode'] = 'Lung_Filled_Erode/copd' + str(cn) + '_' + s['types'][type_im] + 'BHCT'
             name_dic['Lung_Manual'] = 'Lung_Manual/copd' + str(cn) + '_' + s['types'][type_im] + 'BHCT'
+
+            # Lung_Atlas: PTPULMO + Atlas based segmentation
             name_dic['Lung_Atlas'] = 'Lung_Atlas/copd' + str(cn).zfill(2) + '_' + s['types'][type_im] + 'BHCT' + '_Both_Lung_Mask'
             address[requested_address] = address['originalImageFolder'] + name_dic[requested_address] + '.mha'
 

@@ -8,7 +8,10 @@ import Functions.Python.image_processing as ip
 
 
 def ptpulmo_segmentation(segment_organ, data_folder, data, type_im, cn, ext='.mha', mha_folder_name='mha', ptpulmo_exe=None, ptpulmu_setting=None):
-
+    """
+    ptpulmo is a licenced software to perform lung / torso segmentation.
+    All in all, even a primitive segmentation would suffice for this purpose.
+    """
     if segment_organ == 'Torso':
         organ_cmd = 'torso'
         output_name = 'Torso'

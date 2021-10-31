@@ -21,9 +21,9 @@ def do_elastix_registration():
         setting['affine_experiment_step'] = 0
         setting['BSplineGridExperiment'] = 'elastix1'
         setting['AffineParameter'] = ['par0049.affine.txt']
-        setting['MaskName_Affine'] = ['Torso']
-        setting['MaskName_BSpline'] = 'Lung_Atlas'
-        setting['MaskName_BSpline_Final'] = 'Lung_Atlas'
+        setting['MaskName_Affine'] = ['Torso']  # Any simple torso segmentation would suffice here
+        setting['MaskName_BSpline'] = 'Lung_Atlas'  # Any simple lung segmentation would suffice here
+        setting['MaskName_BSpline_Final'] = 'Lung_Atlas'  # Any simple lung segmentation would suffice here
         setting['BSplineGridParameter'] = 'par0049.bspline.grid.txt'
         setting['BSplineParameter'] = 'par0049_stdT-advanced.txt'
         setting['BSplineParameter_final'] = 'par0049_stdTL-advanced.txt'

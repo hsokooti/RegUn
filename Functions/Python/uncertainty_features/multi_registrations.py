@@ -1,4 +1,7 @@
 import os
+from pathlib import Path
+from typing import List
+
 import numpy as np
 import Functions.Python.setting_utils as su
 import SimpleITK as sitk
@@ -115,26 +118,62 @@ def feature_pooling(setting, cn=None, feature_list=None, pooling_executable=None
     logging.debug('multi_registration: Pooling cn={} is done in {:.2f}'.format(cn, time_after - time_before))
 
 
-def ncmi(setting, cn=None, ncmi_executable=None, neighborhood_radius=None):
+def ncmi(setting, cn=None, ncmi_executable=None, neighborhood_radius=None, config_file=None, pool_dir=None,
+         pooled_name=None):
+    # ToDO the call to executable might not work
     time_before = time.time()
     if ncmi_executable is None:
         ncmi_executable = setting['NCMIExeAddress']
-    if not os.path.isdir(su.address_generator(setting, 'PoolFolder', cn=cn)):
-        os.makedirs(su.address_generator(setting, 'PoolFolder', cn=cn))
+
+    if pool_dir is None:
+        if not os.path.isdir(su.address_generator(setting, 'PoolFolder', cn=cn)):
+            os.makedirs(su.address_generator(setting, 'PoolFolder', cn=cn))
     feature = 'NCMI'
-    config_file = su.address_generator(setting, 'PoolingConfig', cn=cn, feature=feature, neighborhood_radius=neighborhood_radius)
-    config_str = 'images=' + su.address_generator(setting, 'Im', cn=cn, type_im=0) + ' ' + \
-                 su.address_generator(setting, 'nonRigid_MovedImage', cn=cn, out=0) + '\n'
-    config_str = config_str +'mask=' + su.address_generator(setting, 'errorImageMask', cn=cn, neighborhood_radius=neighborhood_radius) + '\n'
-    config_str = config_str +'output=' + su.address_generator(setting, 'PoolFolder', cn=cn) + '\n'
-    config_str = config_str+'max_boxsize='+str(setting['NCMI_MaxBoxSize'])+'\n'
-    config_str = config_str+'min_boxsize='+str(setting['NCMI_MinBoxSize'])+'\n'
-    config_str = config_str+'abs_intensity_features=1'+'\n'
-    with open(config_file, "w") as text_str:
-        text_str.write(config_str)
-    pooled_feature_address = su.address_generator(setting, 'PooledFeature', feature=feature, cn=cn, neighborhood_radius=neighborhood_radius)
-    pooled_feature_pure_address = pooled_feature_address.rsplit('/', maxsplit=1)[1]
-    pooling_cmd = ncmi_executable+' --config '+config_file+' '+pooled_feature_pure_address
+    if config_file is None:
+        config_file = su.address_generator(setting, 'PoolingConfig', cn=cn, feature=feature,
+                                           neighborhood_radius=neighborhood_radius)
+        generate_config_file(config_path=Path(config_file),
+                             image_paths=[Path(su.address_generator(setting, 'Im', cn=cn, type_im=0)),
+                                          Path(su.address_generator(setting, 'nonRigid_MovedImage', cn=cn,
+                                                                    out=0))],
+                             mask_path=Path(su.address_generator(setting, 'errorImageMask', cn=cn,
+                                                                 neighborhood_radius=neighborhood_radius)),
+                             output_dir=Path(su.address_generator(setting, 'PoolFolder', cn=cn)),
+                             max_boxsize=setting['NCMI_MaxBoxSize'],
+                             min_boxsize=setting['NCMI_MinBoxSize'])
+    if pooled_name is None:
+        pooled_feature_address = su.address_generator(setting, 'PooledFeature', feature=feature, cn=cn, neighborhood_radius=neighborhood_radius)
+        pooled_name = pooled_feature_address.rsplit('/', maxsplit=1)[1]
+    pooling_cmd = ncmi_executable+' --config '+config_file
+    print(pooling_cmd)
     os.system(pooling_cmd)
     time_after = time.time()
     logging.debug('multi_registration: NCMMI cn={} is done in {:.2f}'.format(cn, time_after - time_before))
+
+
+def generate_config_file(config_path: Path,
+                         image_paths: List[Path],
+                         mask_path: Path,
+                         output_dir: Path,
+                         min_boxsize: int,
+                         max_boxsize:int) -> None:
+    config_str = generate_config_text(image_paths=image_paths, mask_path=mask_path, output_dir=output_dir,
+                                      min_boxsize=min_boxsize, max_boxsize=max_boxsize)
+    with open(config_path, "w") as text_str:
+        text_str.write(config_str)
+
+
+def generate_config_text(image_paths: List[Path],
+                         mask_path: Path,
+                         output_dir: Path,
+                         min_boxsize: int,
+                         max_boxsize:int) -> str:
+    image_paths = [str(p) for p in image_paths]
+    image_paths_str = " ".join(image_paths)
+    config_str = f'image={image_paths_str}\n' \
+                 f'mask={mask_path}\n' \
+                 f'output={output_dir}\n' \
+                 f'max_boxsize={max_boxsize}\n' \
+                 f'min_boxsize={min_boxsize}\n' \
+                 f'abs_intensity_features=1\n'
+    return config_str
